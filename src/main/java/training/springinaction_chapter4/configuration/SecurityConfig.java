@@ -20,12 +20,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .withDefaultSchema()
-                .withUser("buzz")
-                    .password(passwordEncoder().encode("infinity"))
-                    .roles("USER");
+        auth.ldapAuthentication()
+                    .userSearchBase("ou=people")
+                    .userSearchFilter("(uid={0})")
+                    .groupSearchBase("ou=groups")
+                    .groupSearchFilter("member={0}")
+                    .contextSource()
+                    .url("ldap://localhost:8399/dc=tacocloud,dc=com");
+                //.and()
+                  //  .passwordCompare();
+                    //.passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Bean

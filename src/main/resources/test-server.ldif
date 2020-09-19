@@ -1,0 +1,29 @@
+dn: dc=tacocloud,dc=com
+objectClass: top
+objectClass: domain
+
+dn: ou=groups,dc=tacocloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=people,dc=tacocloud,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: uid=buzz,ou=people,dc=tacocloud,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Buzz Lightyear
+sn: Lightyear
+uid: buzz
+userPassword: 123
+
+dn: cn=tacocloud,ou=groups,dc=tacocloud,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: tacocloud
+member: uid=buzz,ou=people,dc=tacocloud,dc=com
